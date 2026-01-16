@@ -5,6 +5,10 @@ print("===== STRUCT (Value Type) =====")
 
 struct UserStruct {
     var name: String
+    
+//    deinit { // por padrão structs não tem deinit
+//
+//    }
 }
 
 var userStruct1 = UserStruct(name: "Rafael")
@@ -36,6 +40,61 @@ userClass2.name = "Pedro"
 
 print("userClass1.name =", userClass1.name) // Pedro
 print("userClass2.name =", userClass2.name) // Pedro
+
+// --------------------------------------------
+
+
+print("===== AUTOMATIC REFERENCE COUNTING =====")
+
+var strongUserClass = UserClass(name: "Rafael")
+print(strongUserClass.name) // Rafael
+
+// weak reference deve ser sempre opcional
+weak var weakUserClass = UserClass(name: "Pedro")
+print(weakUserClass?.name) // nil
+
+
+weak var weakUserClassWithReference = strongUserClass
+print(strongUserClass.name) // Rafael
+
+// --------------------------------------------
+
+print("===== RETAIN CYCLE =====")
+
+class Person {
+    let name: String
+    var pet: Pet?          // strong (default)
+
+    init(name: String) {
+        self.name = name
+    }
+
+    deinit {
+        print("Person \(name) deinit")
+    }
+}
+
+class Pet {
+    let name: String
+    var owner: Person?     // 🔴 strong → cria ciclo
+
+    init(name: String) {
+        self.name = name
+    }
+
+    deinit {
+        print("Pet \(name) deinit")
+    }
+}
+
+var person: Person? = Person(name: "Ana")
+var pet: Pet? = Pet(name: "Bidu")
+
+person?.pet = pet
+pet?.owner = person    // ciclo forte
+
+person = nil
+pet = nil
 
 // --------------------------------------------
 
@@ -190,6 +249,7 @@ print("===== INITS CUSTOMIZADOS REMOVEM O DEFAULT =====")
 
 struct UserWithCustomInit {
     let name: String
+    
     init(_ name: String = "Rafael") {
         self.name = name
     }
