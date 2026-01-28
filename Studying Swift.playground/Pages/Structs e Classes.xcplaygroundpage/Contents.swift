@@ -28,23 +28,24 @@ print("===== CLASS (Reference Type) =====")
 
 class UserClass {
     var name: String
+    
     init(name: String) {
         self.name = name
     }
 }
 
-let userClass1 = UserClass(name: "Rafael")
-let userClass2 = userClass1 // MESMA REFERÊNCIA
+var userClass1 = UserClass(name: "Rafael")
+weak var userClass2 = userClass1 // MESMA REFERÊNCIA
 
-userClass2.name = "Pedro"
+userClass2?.name = "Pedro"
 
 print("userClass1.name =", userClass1.name) // Pedro
-print("userClass2.name =", userClass2.name) // Pedro
+print("userClass2.name =", userClass2?.name) // Pedro
 
 // --------------------------------------------
 
 
-print("===== AUTOMATIC REFERENCE COUNTING =====")
+print("===== AUTOMATIC REFERENCE COUNTING - ARC =====")
 
 var strongUserClass = UserClass(name: "Rafael")
 print(strongUserClass.name) // Rafael
