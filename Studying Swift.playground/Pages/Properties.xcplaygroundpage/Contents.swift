@@ -56,17 +56,16 @@ dataNascimento = "01/01/2026"
 
 class Properties {
     var number = 20
-    
-    lazy var greetingLazyStoredProperty = {
-        var aux = "Hello, playground"
-        aux = "Hello, playground" + " Lazy property" + " Number:\(number)"
-        return aux
-    }()
+    // lazy é necessário porque esta propriedade depende de `self`.
+    // Propriedades não-lazy são inicializadas antes do fim do init,
+    // momento em que o uso de `self` ainda não é permitido.
+    //
+    // Como propriedades lazy só são inicializadas na primeira vez
+    // que são acessadas, isso garante que `self` já esteja totalmente
+    // inicializado, tornando seguro acessar `self.number`.
+    lazy var lazyNumber: Int = 10 + self.number
 }
 
-Properties().greetingLazyStoredProperty
-
-Properties().number = 30
-
-// o valor não é recalculado, ele é somente calculado quando é incicializado
-Properties().greetingLazyStoredProperty
+let properties = Properties()
+properties.number
+properties.lazyNumber
