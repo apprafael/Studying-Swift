@@ -39,12 +39,12 @@ var text: String = "A" {
 
 text = "B"
 
-func salvarDataNascimento(_ dataNascimento: String) {
+// exemplo de uso
+func salvarDataNascimento(_ dataNascimento: String?) {
+    guard let dataNascimento else { return }
     print(dataNascimento + " data salva")
 }
-
-// Computed Properties com Property Observers precisam ser inicializadas
-var dataNascimento: String = "" {
+var dataNascimento: String? {
     didSet {
         salvarDataNascimento(dataNascimento)
     }
