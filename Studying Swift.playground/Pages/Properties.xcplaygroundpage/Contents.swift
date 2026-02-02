@@ -2,11 +2,10 @@ import Foundation
 
 // Stored Properties
 
-var greeting = "Hello, playground"
-
-var greeting2: String = "Hello, playground"
-
-let greeting3 = "Hello, playground"
+let fruta: String = "Maçã"
+let quantidade: Int = 10
+var estaNaValidade: Bool = true
+var preco: Double = 10.0
 
 // Computed Properties
 
@@ -37,6 +36,8 @@ var text: String = "A" {
     }
 }
 
+
+
 text = "B"
 
 // exemplo de uso
@@ -51,6 +52,18 @@ var dataNascimento: String? {
 }
 
 dataNascimento = "01/01/2026"
+
+var temperatura: String {
+    get {
+       "30 C"
+    }
+    
+//    set {
+//        "Temperatura: " + newValue
+//    }
+}
+
+temperatura
 
 // Lazy Stored Properties
 
