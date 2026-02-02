@@ -1,13 +1,17 @@
 import Foundation
 
-// Stored Properties
+// =====================================================
+// Seção 1: Propriedades Armazenadas (Stored Properties)
+// =====================================================
 
 let fruta: String = "Maçã"
 let quantidade: Int = 10
 var estaNaValidade: Bool = true
 var preco: Double = 10.0
 
-// Computed Properties
+// =====================================================
+// Seção 2: Propriedades Computadas (Computed Properties)
+// =====================================================
 
 var number = 10
 
@@ -24,7 +28,30 @@ number = number + 1
 // o valor é recalculado
 greetingComputedProperty
 
-// Computed Properties - Property Observers
+// =====================================================
+// Seção 3: Computed Properties com get e set
+// =====================================================
+
+struct Pessoa {
+    private var _cpf: String = ""
+
+    var cpf: String {
+        get {
+            _cpf
+        }
+        set {
+            _cpf = String(newValue.filter { $0.isNumber }.prefix(11))
+        }
+    }
+}
+
+var p = Pessoa()
+p.cpf = "j4n234j23423kj4"
+print(p.cpf) // 👉 "42342341123"
+
+// =====================================================
+// Seção 4: Property Observers
+// =====================================================
 
 var text: String = "A" {
     willSet {
@@ -35,8 +62,6 @@ var text: String = "A" {
         print("O valor mudou de \(oldValue) para \(text)")
     }
 }
-
-
 
 text = "B"
 
@@ -53,19 +78,10 @@ var dataNascimento: String? {
 
 dataNascimento = "01/01/2026"
 
-var temperatura: String {
-    get {
-       "30 C"
-    }
-    
-//    set {
-//        "Temperatura: " + newValue
-//    }
-}
 
-temperatura
-
-// Lazy Stored Properties
+// =====================================================
+// Seção 5: Propriedades Armazenadas Lazy (Lazy Stored)
+// =====================================================
 
 class Properties {
     var number = 20
