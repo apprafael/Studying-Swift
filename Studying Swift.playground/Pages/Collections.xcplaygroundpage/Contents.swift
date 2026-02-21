@@ -3,8 +3,9 @@ import Foundation
 // =====================================================
 // Seção 1: Declaração de Arrays (Coleções) e Tipagem
 // =====================================================
+// Usado para quando ordem dos valores é importante
 
-var frutas: [String] = ["Maçã", "Banana", "Laranja", "Uva", "Manga"]
+var frutas: [String] = ["Maçã", "Banana", "Laranja", "Uva", "Manga", "Manga"]
 var valores: [Double] = [1.10, 2.20, 3.30]
 
 // Array usando Any (evite em produção, só para demonstração)
@@ -137,3 +138,50 @@ var dataDePessoas = pessoas.map { pessoa in
 }
 
 dataDePessoas
+
+// =====================================================
+// Seção 7: Declaração de Dicionarios (Coleções) e Tipagem
+// =====================================================
+// Usado para quando queremos utilizar chave e valor
+
+var frutasDict: [String: String] = ["A":"Maçã", "V":"Banana", "X":"Laranja", "C":"Uva", "I":"Manga"]
+
+
+print(frutasDict["X"])
+
+frutasDict["J"] = "Abacate"
+
+frutasDict["J"] = "Morango" // sobreescrevi
+
+frutasDict["R"] = "Maçã"
+
+
+// Dicionário não itera de forma ordenada
+for item in frutasDict {
+    print(item.value)
+}
+
+frutasDict.keys.forEach { key in
+    print(key)
+}
+
+frutasDict.values.forEach { value in
+    print(value)
+}
+
+// =====================================================
+// Seção 7: Declaração de Set (Coleções) e Tipagem
+// =====================================================
+// Usado para quando queremos valores únicos
+
+print("--------- SET ------------")
+var frutasSet = Set(["Maçã", "Banana", "Laranja", "Banana"])
+
+frutasSet.insert("Laranja")
+frutasSet.insert("Abacate")
+
+frutasSet.forEach { fruta in
+    print(fruta)
+}
+
+frutasSet.contains("Laranja")
